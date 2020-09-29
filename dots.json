@@ -1,0 +1,476 @@
+{
+  "build": {
+    "dir": "_build"
+  },
+  "packages": {
+    "__linux": {
+      "requires": [
+        "alacritty",
+        "bash",
+        "berry",
+        "bspwm",
+        "cargo",
+        "dunst",
+        "fish",
+        "git",
+        "lastpass",
+        "mpd",
+        "ncmpcpp",
+        "npm",
+        "nvim",
+        "picom",
+        "profile",
+        "python",
+        "qutebrowser",
+        "ranger",
+        "rofi",
+        "scripts",
+        "startpage",
+        "tmux",
+        "tmuxinator",
+        "wallpaper",
+        "xdg",
+        "zathura"
+      ]
+    },
+    "__mac": {
+      "requires": [
+        "bash",
+        "cargo",
+        "fish",
+        "git",
+        "lastpass",
+        "mpd",
+        "ncmpcpp",
+        "npm",
+        "nvim",
+        "profile",
+        "python",
+        "qutebrowser",
+        "ranger",
+        "scripts",
+        "startpage",
+        "tmux",
+        "tmuxinator"
+      ]
+    },
+    "_color": {
+      "files": {
+        "_color/preview.html": {
+          "template": true
+        }
+      }
+    },
+    "_iterm2": {
+      "files": {
+        "_iterm2/uuu.itermcolors": {
+          "template": true
+        }
+      }
+    },
+    "alacritty": {
+      "files": {
+        "alacritty/alacritty.yml": {
+          "dest": "$XDG_CONFIG_HOME/alacritty/alacritty.yml",
+          "template": true
+        }
+      }
+    },
+    "bash": {
+      "files": {
+        "bash/bashrc": "$HOME/.bashrc"
+      },
+      "requires": [
+        "profile"
+      ]
+    },
+    "berry": {
+      "files": {
+        "berry/autostart": {
+          "dest": "$XDG_CONFIG_HOME/berry/autostart",
+          "executable": true,
+          "template": true
+        },
+        "berry/berry-info": {
+          "dest": "$XDG_CONFIG_HOME/berry/autostart",
+          "executable": true,
+          "template": true
+        },
+        "berry/berry-window-grow": {
+          "dest": "$XDG_CONFIG_HOME/berry/berry-window-grow",
+          "executable": true
+        },
+        "berry/berry-window-move": {
+          "dest": "$XDG_CONFIG_HOME/berry/berry-window-move",
+          "executable": true
+        },
+        "berry/berry-window-shrink": {
+          "dest": "$XDG_CONFIG_HOME/berry/berry-window-shrink",
+          "executable": true
+        },
+        "berry/berry-window-snap": {
+          "dest": "$XDG_CONFIG_HOME/berry/berry-window-snap",
+          "executable": true
+        },
+        "berry/sxhkd/launch-berry": {
+          "dest": "$XDG_CONFIG_HOME/berry/launch-berry",
+          "executable": true
+        },
+        "berry/sxhkd/sxhkdrc-berry": {
+          "dest": "$XDG_CONFIG_HOME/berry/sxhkdrc-berry",
+          "template": true
+        }
+      },
+      "requires": [
+        "profile"
+      ]
+    },
+    "bspwm": {
+      "files": {
+        "bspwm/bspwm-info": {
+          "dest": "$XDG_CONFIG_HOME/bspwm/bspwm-info",
+          "executable": true
+        },
+        "bspwm/bspwmrc": {
+          "dest": "$XDG_CONFIG_HOME/bspwm/bspwmrc",
+          "executable": true,
+          "template": true
+        },
+        "bspwm/sxhkd/launch-bspwm": {
+          "dest": "$XDG_CONFIG_HOME/bspwm/launch-bspwm",
+          "executable": true
+        },
+        "bspwm/sxhkd/sxhkdrc-bspwm": {
+          "dest": "$XDG_CONFIG_HOME/bspwm/sxhkdrc-bspwm",
+          "template": true
+        }
+      },
+      "requires": [
+        "profile"
+      ]
+    },
+    "cargo": {
+      "files": {
+        "cargo/cargo.profile": "$HOME/.local/etc/profile.d/50-cargo"
+      }
+    },
+    "dunst": {
+      "files": {
+        "dunst/dunstrc": {
+          "dest": "$XDG_CONFIG_HOME/dunst/dunstrc",
+          "template": true
+        },
+        "dunst/launch": {
+          "dest": "$XDG_CONFIG_HOME/dunst/launch",
+          "executable": true
+        }
+      }
+    },
+    "fish": {
+      "files": {
+        "fish/config.fish": "$XDG_CONFIG_HOME/fish/config.fish",
+        "fish/fishfile": "$XDG_CONFIG_HOME/fish/fishfile",
+        "fish/functions/__fish_command_not_found_handler.fish": "$XDG_CONFIG_HOME/fish/functions/__fish_command_not_found_handler.fish",
+        "fish/functions/fish_greeting.fish": "$XDG_CONFIG_HOME/fish/functions/fish_greeting.fish",
+        "fish/functions/inside.fish": "$XDG_CONFIG_HOME/fish/functions/inside.fish",
+        "fish/functions/psgrep.fish": "$XDG_CONFIG_HOME/fish/functions/psgrep.fish"
+      },
+      "requires": [
+        "profile"
+      ]
+    },
+    "git": {
+      "files": {
+        "git/bin/git-apply-gitignore": {
+          "dest": "$HOME/.local/bin/git-apply-gitignore",
+          "executable": true
+        },
+        "git/bin/git-submodule-update": {
+          "dest": "$HOME/.local/bin/git-submodule-update",
+          "executable": true
+        },
+        "git/config": "$XDG_CONFIG_HOME/git/config",
+        "git/ignore": "$XDG_CONFIG_HOME/git/ignore",
+        "git/user": {
+          "dest": "$XDG_CONFIG_HOME/git/user",
+          "template": true
+        }
+      }
+    },
+    "lastpass": {
+      "files": {
+        "lastpass/alias.pclip": "$XDG_CONFIG_HOME/lpass/alias.pclip",
+        "lastpass/bin/lpass-askpass": {
+          "dest": "$HOME/.local/bin/lpass-askpass",
+          "executable": true
+        },
+        "lastpass/bin/lpass-gui-copy": {
+          "dest": "$HOME/.local/bin/lpass-gui-copy",
+          "executable": true
+        },
+        "lastpass/env": "$XDG_CONFIG_HOME/lpass/env"
+      }
+    },
+    "mpd": {
+      "files": {
+        "mpd/launch": {
+          "dest": "$XDG_CONFIG_HOME/mpd/launch",
+          "executable": true
+        },
+        "mpd/mpd.conf": {
+          "dest": "$XDG_CONFIG_HOME/mpd/mpd.conf",
+          "template": true
+        }
+      }
+    },
+    "ncmpcpp": {
+      "files": {
+        "ncmpcpp/config": "$XDG_CONFIG_HOME/ncmpcpp/config"
+      },
+      "requires": [
+        "ncmpcpp"
+      ]
+    },
+    "npm": {
+      "files": {
+        "npm/npm.profile": "$HOME/.local/etc/profile.d/50-npm",
+        "npm/npmrc": "$XDG_CONFIG_HOME/npm/npmrc"
+      },
+      "requires": [
+        "profile"
+      ]
+    },
+    "nvim": {
+      "files": {
+        "nvim/colors/uuu.vim": {
+          "dest": "$XDG_CONFIG_HOME/nvim/colors/uuu.vim",
+          "template": true
+        },
+        "nvim/ftplugin/coffee.vim": "$XDG_CONFIG_HOME/nvim/ftplugin/coffee.vim",
+        "nvim/ftplugin/css.vim": "$XDG_CONFIG_HOME/nvim/ftplugin/css.vim",
+        "nvim/ftplugin/html.vim": "$XDG_CONFIG_HOME/nvim/ftplugin/html.vim",
+        "nvim/ftplugin/javascript.vim": "$XDG_CONFIG_HOME/nvim/ftplugin/javascript.vim",
+        "nvim/ftplugin/json.vim": "$XDG_CONFIG_HOME/nvim/ftplugin/json.vim",
+        "nvim/ftplugin/less.vim": "$XDG_CONFIG_HOME/nvim/ftplugin/less.vim",
+        "nvim/ftplugin/plaintex.vim": "$XDG_CONFIG_HOME/nvim/ftplugin/plaintex.vim",
+        "nvim/ftplugin/scss.vim": "$XDG_CONFIG_HOME/nvim/ftplugin/scss.vim",
+        "nvim/ftplugin/vue.vim": "$XDG_CONFIG_HOME/nvim/ftplugin/vue.vim",
+        "nvim/init.vim": "$XDG_CONFIG_HOME/nvim/init.vim"
+      }
+    },
+    "picom": {
+      "files": {
+        "picom/launch": {
+          "dest": "$XDG_CONFIG_HOME/picom/launch",
+          "executable": true
+        },
+        "picom/picom.conf": "$XDG_CONFIG_HOME/picom/picom.conf"
+      }
+    },
+    "profile": {
+      "files": {
+        "profile/profile": "$HOME/.profile"
+      }
+    },
+    "python": {
+      "files": {
+        "python/python.profile": "$HOME/.local/etc/profile.d/50-python",
+        "python/pythonrc": "$XDG_CONFIG_HOME/python/pythonrc"
+      },
+      "requires": [
+        "profile"
+      ]
+    },
+    "qutebrowser": {
+      "files": {
+        "qutebrowser/config.py": {
+          "dest": "$XDG_CONFIG_HOME/qutebrowser/config.py",
+          "template": true
+        },
+        "qutebrowser/userscripts/lastpass": {
+          "dest": "$XDG_DATA_HOME/qutebrowser/userscripts/lastpass",
+          "executable": true
+        }
+      }
+    },
+    "ranger": {
+      "files": {
+        "ranger/rc.conf": "$XDG_CONFIG_HOME/ranger/rc.conf",
+        "ranger/rifle.conf": "$XDG_CONFIG_HOME/ranger/rifle.conf"
+      }
+    },
+    "rofi": {
+      "files": {
+        "rofi/config.rasi": {
+          "dest": "$XDG_CONFIG_HOME/rofi/config.rasi",
+          "template": true
+        },
+        "rofi/theme.rasi": {
+          "dest": "$XDG_CONFIG_HOME/rofi/theme.rasi",
+          "template": true
+        }
+      }
+    },
+    "scripts": {
+      "files": {
+        "scripts/ana-dig-convert": {
+          "dest": "$HOME/.local/bin/ana-dig-convert",
+          "executable": true
+        },
+        "scripts/colorblocks": {
+          "dest": "$HOME/.local/bin/colorblocks",
+          "executable": true
+        },
+        "scripts/dims": {
+          "dest": "$HOME/.local/bin/dims",
+          "executable": true
+        },
+        "scripts/music-choose": {
+          "dest": "$HOME/.local/bin/music-choose",
+          "executable": true
+        },
+        "scripts/nightshift": {
+          "dest": "$HOME/.local/bin/nightshift",
+          "executable": true
+        },
+        "scripts/notify-all": {
+          "dest": "$HOME/.local/bin/notify-all",
+          "executable": true
+        },
+        "scripts/notify-network": {
+          "dest": "$HOME/.local/bin/notify-network",
+          "executable": true,
+          "template": true
+        },
+        "scripts/notify-time": {
+          "dest": "$HOME/.local/bin/notify-time",
+          "executable": true
+        },
+        "scripts/notify-volume": {
+          "dest": "$HOME/.local/bin/notify-volume",
+          "executable": true
+        },
+        "scripts/passgen": {
+          "dest": "$HOME/.local/bin/passgen",
+          "executable": true
+        },
+        "scripts/screenlock": {
+          "dest": "$HOME/.local/bin/screenlock",
+          "executable": true,
+          "template": true
+        },
+        "scripts/slug": {
+          "dest": "$HOME/.local/bin/slug",
+          "executable": true
+        },
+        "scripts/symlinktest": {
+          "dest": "$HOME/.local/bin/symlinktest",
+          "executable": true
+        },
+        "scripts/travis-run": {
+          "dest": "$HOME/.local/bin/travis-run",
+          "executable": true
+        },
+        "scripts/update-all": {
+          "dest": "$HOME/.local/bin/update-all",
+          "executable": true
+        }
+      }
+    },
+    "startpage": {
+      "files": {
+        "startpage/start.html": {
+          "dest": "$XDG_CONFIG_HOME/startpage/start.html",
+          "template": true
+        }
+      }
+    },
+    "tmux": {
+      "files": {
+        "tmux/tmux.conf": "$HOME/.tmux.conf"
+      }
+    },
+    "tmuxinator": {
+      "files": {
+        "tmuxinator/code.yml": "$XDG_CONFIG_HOME/tmuxinator/code.yml",
+        "tmuxinator/default.yml": "$XDG_CONFIG_HOME/tmuxinator/default.yml"
+      },
+      "requires": [
+        "tmux"
+      ]
+    },
+    "wallpaper": {
+      "files": {
+        "wallpaper/bin/wallpaper-changer": {
+          "dest": "$HOME/.local/bin/wallpaper-changer",
+          "executable": true
+        },
+        "wallpaper/bin/wallpaper-picker": {
+          "dest": "$HOME/.local/bin/wallpaper-picker",
+          "executable": true
+        },
+        "wallpaper/bin/wallpaper-setter": {
+          "dest": "$HOME/.local/bin/wallpaper-setter",
+          "executable": true
+        },
+        "wallpaper/launch": {
+          "dest": "$XDG_CONFIG_HOME/wallpaper/launch",
+          "executable": true,
+          "template": true
+        }
+      }
+    },
+    "xdg": {
+      "files": {
+        "xdg/user-dirs.dirs": "$XDG_CONFIG_HOME/user-dirs.dirs",
+        "xdg/user-dirs.locale": "$XDG_CONFIG_HOME/user-dirs.locale"
+      }
+    },
+    "zathura": {
+      "files": {
+        "zathura/zathurarc": {
+          "dest": "$XDG_CONFIG_HOME/zathura/zathurarc",
+          "template": true
+        }
+      }
+    }
+  },
+  "templates": {
+    "include": [
+      "_color/seaside-dark.json",
+      "local-os.json",
+      "local-secret.json"
+    ],
+    "snippets": "_snippets",
+    "variables": {
+      "color_base00_hex": "000000",
+      "color_base01_hex": "222222",
+      "color_base02_hex": "444444",
+      "color_base03_hex": "666666",
+      "color_base04_hex": "999999",
+      "color_base05_hex": "dddddd",
+      "color_base06_hex": "eeeeee",
+      "color_base07_hex": "ffffff",
+      "color_base08_hex": "ff0000",
+      "color_base09_hex": "ffa500",
+      "color_base0A_hex": "ffff00",
+      "color_base0B_hex": "00ff00",
+      "color_base0C_hex": "00ffff",
+      "color_base0D_hex": "0000ff",
+      "color_base0E_hex": "ff00ff",
+      "color_base0F_hex": "800080",
+      "color_theme": "dark",
+      "color_wall_hex": "111111",
+      "dims_border_width": "2",
+      "dims_border_width_inner": "0",
+      "dims_border_width_outer": "0",
+      "dims_padding": "8",
+      "dims_title_height": "48",
+      "dims_window_gap": "48",
+      "font_name": "Iosevka",
+      "font_size": "11",
+      "interface_wired_0": "",
+      "interface_wireless_0": ""
+    }
+  }
+}

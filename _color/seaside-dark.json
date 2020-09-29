@@ -1,0 +1,20 @@
+{
+  "color_base00_hex": "4a4d4c",
+  "color_base01_hex": "535554",
+  "color_base02_hex": "646664",
+  "color_base03_hex": "a09f9c",
+  "color_base04_hex": "b9b8b5",
+  "color_base05_hex": "f5f1ed",
+  "color_base06_hex": "f8f4f2",
+  "color_base07_hex": "faf8f6",
+  "color_base08_hex": "d3898c",
+  "color_base09_hex": "dca993",
+  "color_base0A_hex": "e8cfaa",
+  "color_base0B_hex": "b5bd89",
+  "color_base0C_hex": "98c0c3",
+  "color_base0D_hex": "96abc0",
+  "color_base0E_hex": "d9bdc5",
+  "color_base0F_hex": "9087a1",
+  "color_theme": "dark",
+  "color_wall_hex": "8c9daa"
+}

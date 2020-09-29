@@ -1,0 +1,3 @@
+[user]
+name = {{{ _secret_git_name }}}
+email = {{{ _secret_git_email }}}

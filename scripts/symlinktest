@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+link=$1
+[ -L "$link" ] && [ -e "$link" ]

@@ -1,0 +1,75 @@
+#!/usr/bin/env sh
+
+# This indicates that the script is run in startup mode, where everything is
+# initialized. After startup mode it should be called with the parameter
+# "false" to prevent everything from being killed and reloaded
+startup=${1:-true}
+
+# Start the hotkey daemon
+sxhkd_launch="$XDG_CONFIG_HOME/sxhkd/launch-berry"
+if $startup; then
+    if [ -f "$sxhkd_launch" ]; then
+        "$sxhkd_launch"
+    else
+        echo "Error: Cannot start berry without sxhkd." \
+            "Expected a launch script in '$sxhkd_launch'"
+        exit 1
+    fi
+fi
+
+{{{ _wm_init_wm_independent }}}
+{{{ _wm_init_non_reparenting }}}
+
+# Set the color of the outer border of the focused window
+berryc focus_color {{{ _color_base00_hex }}}
+
+# Set the color of the outer border for all unfocused windows
+berryc unfocus_color {{{ _color_base00_hex }}}
+
+# Set the color of the inner border and the titlebar of the focused window
+berryc inner_focus_color {{{ _color_base05_hex }}}
+
+# Set the color of the inner border and the titlebar of the unfocused window
+berryc inner_unfocus_color {{{ _color_base01_hex }}}
+
+# Set the color of the title bar text for the focused window
+berryc text_focus_color {{{ _color_base05_hex }}}
+
+# Set the color of the title bar text for all unfocused windows
+berryc text_unfocus_color {{{ _color_base01_hex }}}
+
+# Set the name of the font to use (e.g. set_font dina-9)
+berryc set_font {{{ _font_name }}}
+
+# Set the border width, in pixels, of the outer border
+berryc border_width {{{ _dims_border_width_outer }}}
+
+# Set the border width, in pixels, of the inneer border
+berryc inner_border_width {{{ _dims_border_width_inner }}}
+
+# Set the height of the title bar, does not include border widths
+berryc title_height {{{ _dims_title_height }}}
+
+# Set the edge padding around the screen
+berryc edge_gap 0 0 0 0
+
+# Determine whether or not text should be draw in title bars
+berryc draw_text false
+
+# Determine whether or not newly placed windows should be placed in the largest available space.
+berryc smart_place true
+
+# Determine whether or not BERRY_WINDOW_STATUS returns JSON formatted text.
+berryc json_status true
+
+if $startup; then
+    # Associate the ith monitor to the jth workspace
+    for i in $(seq 0 9); do
+        berryc save_monitor $i 0
+    done
+
+    # Name the ith desktop name. Used with _NET_DESKTOP_NAMES.
+    for i in $(seq 0 9); do
+        berryc name_desktop $i $i
+    done
+fi

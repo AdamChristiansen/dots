@@ -1,0 +1,49 @@
+[global]
+# The notifications follow keyboard focus
+follow = keyboard
+font = {{{ _font_name }}} {{{ _font_size }}}
+# The following format specifiers can be used:
+# %a appname
+# %s summary
+# %b body
+# %i iconname (including its path)
+# %I iconname (without its path)
+# %p progress value ([0%] to [100%])
+# %n progress value without any extra characters
+# %% Literal %
+format = "<b>%a</b> %s\n%b"
+frame_width = 0
+frame_color = "#{{{ _color_base05_hex }}}"
+# The size in position in [{width}][x{height}][+/-{x}[+/-{y}]] coordinates.
+geometry = "320x10-{{{ int(_dims_window_gap) // 2 }}}+{{{ int(_dims_window_gap) // 2 }}}"
+horizontal_padding = {{{ _dims_padding }}}
+icon_position = left
+# Allow HTML markup
+markup = yes
+# Vertical padding
+padding = {{{ _dims_padding }}}
+separator_color = frame
+separator_height = 0
+# Sort by urgency
+sort = yes
+# Show a notification at startup
+startup_notification = true
+# Allowed notifications recalled from history to timeout automatically
+sticky_history = no
+# Wrap long lines
+word_wrap = yes
+
+[urgency_low]
+background = "#{{{ _color_base05_hex }}}"
+foreground = "#{{{ _color_base00_hex }}}"
+timeout = 3
+
+[urgency_normal]
+background = "#{{{ _color_base05_hex }}}"
+foreground = "#{{{ _color_base00_hex }}}"
+timeout = 5
+
+[urgency_critical]
+background = "#{{{ _color_base08_hex }}}"
+foreground = "#{{{ _color_base00_hex }}}"
+timeout = 0

@@ -1,0 +1,31 @@
+#!/usr/bin/env sh
+
+# This program runs the `script` section of a `.travis.yml` file. By default
+# this uses the `.travis.yml` in the working directory, but a different file
+# can be specified as this program's only argument.
+
+# Verify that the file exists
+fname="${1:-.travis.yml}"
+if [ ! -f "$fname" ]; then
+    echo "File '$fname' not found" 2>&1
+    exit 1
+fi
+
+# Find the script section and iterate over lines. This assumes that the script
+# is at most 99 lines long (99 lines + script tag = 100).
+cat "$fname" | grep -A 100 -e "^script:$" | tail -n +2 | while read line; do
+    # Take lines that start with `-` (or spaces before that), since they will
+    # be commands. As soon as this fails the commands are done
+    if echo "$line" | grep -e "^.*\-.*" > /dev/null; then
+        # Extract the command from the line
+        cmd=$(echo "$line" | awk '{for (i = 2; i <= NF; i++) printf "%s ", $i}')
+        # Run the command, and if it fails, exit with its error code
+        $cmd
+        r=$?
+        if [ $r -ne 0 ]; then
+            exit $r
+        fi
+    else
+        break
+    fi
+done

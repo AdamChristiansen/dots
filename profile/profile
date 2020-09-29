@@ -1,0 +1,37 @@
+# To maintain compatibility with non-POSIX shells like fish, this file should
+# adhere to the following rules:
+#
+# - Empty lines are allowed
+# - Lines containing only comments are allowed
+# - Lines matching the form `export VAR=...` are allowed
+#   - Note that there is no trailing comment allowed
+# - Local (non-export) variables are not allowed
+# - Simple variable interpolation like `$VAR` is allowed
+#   - No other interpolations are allowed (like `${VAR}` and ${VAR:...}`)
+#
+# These rules are strict but useful, since the easiest way to load this file in
+# shells like fish is to manually process it.
+
+#==============================================================================
+# XDG directories
+#==============================================================================
+
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_DATA_DIRS="/usr/local/share:/usr/share"
+export XDG_CONFIG_DIRS="/etc/xdg"
+
+#==============================================================================
+# Program settings
+#==============================================================================
+
+# Prevent less from creating a ~/.lesshst file
+export LESSHISTFILE="-"
+
+#==============================================================================
+# PATH
+#==============================================================================
+
+export PATH="$PATH:$XDG_DATA_HOME/bin"
+export PATH="$HOME/.local/bin:$PATH"

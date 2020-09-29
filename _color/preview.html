@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <header>
+    <title>Dots Color Preview</title>
+    <style>
+      html, body {
+        background: #{{{ _color_wall_hex }}};
+        font-family: "Courier New", Courier, monospace;
+        font-size: 16px;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+      }
+      .wrapper {
+        padding: 64px 0;
+        width: 100%;
+      }
+      .container {
+        margin: 0 auto;
+        width: 640px;
+      }
+      .row {
+        width: 100%;
+      }
+      .color-block {
+        float: left;
+        height: 64px;
+        margin: 8px;
+        width: 64px;
+      }
+      .color-fill {
+        float: left;
+        height: 64px;
+        margin: 8px;
+        width: 624px;
+      }
+      .color-demo {
+        float: left;
+        margin: 8px;
+        width: 304px;
+      }
+      .color-text {
+        line-height: 16px;
+        margin: 8px;
+      }
+    </style>
+  </header>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="color-block" style="background: #{{{ _color_base00_hex }}};"></div>
+          <div class="color-block" style="background: #{{{ _color_base01_hex }}};"></div>
+          <div class="color-block" style="background: #{{{ _color_base02_hex }}};"></div>
+          <div class="color-block" style="background: #{{{ _color_base03_hex }}};"></div>
+          <div class="color-block" style="background: #{{{ _color_base04_hex }}};"></div>
+          <div class="color-block" style="background: #{{{ _color_base05_hex }}};"></div>
+          <div class="color-block" style="background: #{{{ _color_base06_hex }}};"></div>
+          <div class="color-block" style="background: #{{{ _color_base07_hex }}};"></div>
+        </div>
+        <div class="row">
+          <div class="color-block" style="background: #{{{ _color_base08_hex }}};"></div>
+          <div class="color-block" style="background: #{{{ _color_base09_hex }}};"></div>
+          <div class="color-block" style="background: #{{{ _color_base0A_hex }}};"></div>
+          <div class="color-block" style="background: #{{{ _color_base0B_hex }}};"></div>
+          <div class="color-block" style="background: #{{{ _color_base0C_hex }}};"></div>
+          <div class="color-block" style="background: #{{{ _color_base0D_hex }}};"></div>
+          <div class="color-block" style="background: #{{{ _color_base0E_hex }}};"></div>
+          <div class="color-block" style="background: #{{{ _color_base0F_hex }}};"></div>
+        </div>
+        <div class="row">
+          <div class="color-demo" style="background: #{{{ _color_base00_hex }}};">
+            <div class="color-text" style="color: #{{{ _color_base00_hex }}};">bg</div>
+            <div class="color-text" style="color: #{{{ _color_base01_hex }}};">lighter bg</div>
+            <div class="color-text" style="color: #{{{ _color_base02_hex }}};">selection bg</div>
+            <div class="color-text" style="color: #{{{ _color_base03_hex }}};">comment</div>
+            <div class="color-text" style="color: #{{{ _color_base04_hex }}};">dark fg</div>
+            <div class="color-text" style="color: #{{{ _color_base05_hex }}};">fg</div>
+            <div class="color-text" style="color: #{{{ _color_base06_hex }}};">light fg</div>
+            <div class="color-text" style="color: #{{{ _color_base07_hex }}};">light bg</div>
+            <div class="color-text" style="color: #{{{ _color_base08_hex }}};">text that is red</div>
+            <div class="color-text" style="color: #{{{ _color_base09_hex }}};">text that is orange</div>
+            <div class="color-text" style="color: #{{{ _color_base0A_hex }}};">text that is yellow</div>
+            <div class="color-text" style="color: #{{{ _color_base0B_hex }}};">text that is green</div>
+            <div class="color-text" style="color: #{{{ _color_base0C_hex }}};">text that is cyan</div>
+            <div class="color-text" style="color: #{{{ _color_base0D_hex }}};">text that is blue</div>
+            <div class="color-text" style="color: #{{{ _color_base0E_hex }}};">text that is pink</div>
+            <div class="color-text" style="color: #{{{ _color_base0F_hex }}};">text that is purple</div>
+          </div>
+          <div class="color-demo" style="background: #{{{ _color_base07_hex }}};">
+            <div class="color-text" style="color: #{{{ _color_base00_hex }}};">bg</div>
+            <div class="color-text" style="color: #{{{ _color_base01_hex }}};">lighter bg</div>
+            <div class="color-text" style="color: #{{{ _color_base02_hex }}};">selection bg</div>
+            <div class="color-text" style="color: #{{{ _color_base03_hex }}};">comment</div>
+            <div class="color-text" style="color: #{{{ _color_base04_hex }}};">dark fg</div>
+            <div class="color-text" style="color: #{{{ _color_base05_hex }}};">fg</div>
+            <div class="color-text" style="color: #{{{ _color_base06_hex }}};">light fg</div>
+            <div class="color-text" style="color: #{{{ _color_base07_hex }}};">light bg</div>
+            <div class="color-text" style="color: #{{{ _color_base08_hex }}};">text that is red</div>
+            <div class="color-text" style="color: #{{{ _color_base09_hex }}};">text that is orange</div>
+            <div class="color-text" style="color: #{{{ _color_base0A_hex }}};">text that is yellow</div>
+            <div class="color-text" style="color: #{{{ _color_base0B_hex }}};">text that is green</div>
+            <div class="color-text" style="color: #{{{ _color_base0C_hex }}};">text that is cyan</div>
+            <div class="color-text" style="color: #{{{ _color_base0D_hex }}};">text that is blue</div>
+            <div class="color-text" style="color: #{{{ _color_base0E_hex }}};">text that is pink</div>
+            <div class="color-text" style="color: #{{{ _color_base0F_hex }}};">text that is purple</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+# The format of this file is:
+#
+# - Empty lines are ignored
+# - Lines that start with # are ignored
+# - There is to be one package name per line
+# - A line that matches [...] denotes a tap. The tap is between the brackets.
+#   All package names after it should come from that tap.
+
+#------------------------------------------------------------------------------
+# Regular packages installed with `brew install`
+#------------------------------------------------------------------------------
+
+atool
+exa
+fish
+lastpass-cli
+neovim
+ranger
+ripgrep
+stow
+tmux
+tmuxinator
+
+#------------------------------------------------------------------------------
+# Packages to be installed with `brew cask install`
+#------------------------------------------------------------------------------
+
+# These ones are simply installed with brew cask install without requiring a
+# tap.
+[-]
+mactex
+qutebrowser
+
+[homebrew/cask-fonts]
+font-iosevka-nerd-font
+
+[homebrew/cask-versions]
+iterm2-beta

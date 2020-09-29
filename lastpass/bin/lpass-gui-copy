@@ -1,0 +1,141 @@
+#!/usr/bin/env python3
+
+import argparse
+import itertools
+import json
+import os
+import re
+import subprocess
+import sys
+
+# The rofi command to spawn. This returns the zero-indexed selected item,
+# not the text.
+ROFI_COMMAND = ["rofi", "-dmenu", "-i", "-format", "i"]
+
+# The encoding for subprocess communication.
+ENCODING = "utf-8"
+
+# LastPass URLs not to show.
+FILTER_URLS = [
+    "http://group", # Password groups
+    "http://sn"     # Secure notes
+]
+
+def printerr(s):
+    print(s, file=sys.stderr)
+
+def rofi(options):
+    """
+    Run the rofi command and then pipe the options into it. The selection that
+    is made is returned.
+    """
+    return subprocess.run(ROFI_COMMAND,
+            input="\n".join(options).encode(ENCODING),
+            stdout=subprocess.PIPE).stdout.decode(ENCODING).strip()
+
+class Entry:
+    """
+    Represents an entry from the LastPass CLI.
+    """
+
+    def __init__(self, data):
+        """
+        Takes a JSON entry from the LastPass CLI and stores it in a way that is
+        easier to work with.
+        """
+        self.fullname          = data["fullname"]
+        self.id                = data["id"]
+        self.group             = data["group"]
+        self.last_modified_gmt = data["last_modified_gmt"]
+        self.last_touch        = data["last_touch"]
+        self.name              = data["name"]
+        self.note              = data["note"]
+        self.password          = data["password"]
+        self.url               = data["url"]
+        self.username          = data["username"]
+
+    def __str__(self):
+        # The most important thing is that the password is not printed
+        return "\n".join([
+            f"fullname          = {self.fullname}",
+            f"id                = {self.id}",
+            f"group             = {self.group}",
+            f"last_modified_gmt = {self.last_modified_gmt}",
+            f"last_touch        = {self.last_touch}",
+            f"name              = {self.name}",
+            f"note              = {self.note}",
+            f"password          = {'*' * 8 if self.password else '(empty)'}",
+            f"url               = {self.url}",
+            f"username          = {self.username}",
+        ])
+
+    def __repr__(self):
+        return str(self)
+
+def lpass_list():
+    """
+    Returns all of the LastPass entries as a list of Entry objects (in no
+    particular order).
+    """
+    p = subprocess.run(["lpass", "show", "-x", "-j", "-G", ".*"],
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    if p.returncode:
+        printerr(f"LastPass error: {p.stderr.decode(ENCODING).strip()}")
+        return []
+    out = p.stdout.decode(ENCODING).strip()
+    es = list(map(Entry, json.loads(out)))
+    es = list(filter(lambda e: e.url not in FILTER_URLS, es))
+    return sorted(es, key=lambda e: e.name)
+
+def prepare_options(es):
+    """
+    Format the options to display. This can change at any time, but the only
+    thing that should remain the same is that the very first token is an
+    integer that is the index of the entry in the list.
+    """
+    width = lambda key: max(map(lambda e: len(str(key(e))), es))
+    wn  = width(lambda e: e.name)
+    wu  = width(lambda e: e.url)
+    wun = width(lambda e: e.username)
+    f = "{{:{}}} {{:{}}} {{:{}}}".format(wn, wu, wun)
+    return [f.format(e.name, e.url, e.username) for e in es]
+
+def copy_clipboard(s):
+    """
+    Copy a string to the clipboard.
+    """
+    subprocess.run(["xclip", "-selection", "clipboard"],
+            universal_newlines=True, input=s)
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+            description="Copy LastPass usernames and passwords")
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument("--username", "-u",
+            action="store_true",
+            help="Copy username")
+    group.add_argument("--password", "-p",
+            action="store_true",
+            help="Copy password. Overrides --username")
+
+    args = parser.parse_args()
+
+    # Get the LastPass entries
+    es = lpass_list()
+    if not es:
+        printerr("LastPass error: no entries found")
+        sys.exit(1)
+
+    # Show the selection menu
+    options = prepare_options(es)
+    try:
+        sel_index = int(rofi(options))
+    except ValueError:
+        # Nothing was selected
+        sys.exit(ExitCode.SUCCESS)
+    entry = es[sel_index]
+
+    copy_clipboard(
+            entry.username
+            if args.username and not args.password else
+            entry.password)

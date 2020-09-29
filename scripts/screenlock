@@ -1,0 +1,67 @@
+#!/usr/bin/env sh
+
+# The screen background color. This must be in 3-byte RGB format.
+bg="{{{ _color_base00_hex }}}"
+
+# The accent colors to use. These must be in the 4-byte RGBA format.
+fg="{{{ _color_base05_hex }}}ff"
+neg_color="{{{ _color_base08_hex }}}ff"
+pos_color="{{{ _color_base0B_hex }}}ff"
+transparent=00000000
+
+# Generate the background options to use as arguments to i3lock
+background() {
+    # Try to set the background, otherwise use a fallback color
+    if command -v convert > /dev/null && command -v scrot > /dev/null; then
+        img="/tmp/lockscreen-wallpaper-generated.png"
+        mod=$([ "{{{ _color_theme }}}" = "dark" ] && echo "-20" || echo "20")
+        scrot --overwrite "$img"
+        convert "$img" \
+            -scale 5% \
+            -brightness-contrast ${mod}x${mod} \
+            -scale 2000% \
+            "$img"
+        echo --image="$img"
+    else
+        echo --color="$bg"
+    fi
+}
+
+# A routine which disables the DPMS
+revert_dpms() {
+    xset dpms 0 0 0
+}
+
+# Make sure that certain events are trapped so that the DPMS settings are
+# reverted to their original values when the computer is unlocked
+trap revert_dpms HUP INT TERM
+
+# Set the screen to turn off after some number of seconds when inactive on the
+# lock screen
+t=15
+xset dpms $t $t $t
+
+# Pause any playing media
+if command -v mpc > /dev/null; then
+    mpc pause
+fi
+
+# Lock the screen and block until the screen is unlocked
+i3lock \
+    $(background) \
+    --timestr="%I:%M:%S %p" --timepos="x+w/2:y+h/2-16" --timecolor=$fg \
+    --datestr="%A, %d %B %Y" --datepos="x+w/2:y+h/2+16" --datecolor=$fg \
+    --indpos="x+w/2:y+h/2+64" \
+    --clock --force-clock \
+    --radius=24 --ring-width=6 \
+    --ringcolor=$fg --ringvercolor=$fg \
+    --ringwrongcolor=$fg \
+    --insidecolor=$transparent --insidevercolor=$transparent \
+    --insidewrongcolor=$neg_color --line-uses-inside \
+    --keyhlcolor=$pos_color --bshlcolor=$neg_color \
+    --verifcolor=$fg --separatorcolor=$fg \
+    --noinputtext="" --veriftext="" --wrongtext="" \
+    --nofork
+
+# Revert the DPMS settings after unlocking
+revert_dpms

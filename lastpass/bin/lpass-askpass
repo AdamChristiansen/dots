@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+
+prompt="LastPass password"
+
+# If running in a graphical environment and zenity is installed
+if [ ! -z "$DISPLAY" ] && command -v zenity > /dev/null; then
+    zenity --entry --hide-text --text="$prompt"
+    exit $?
+# If running interactively
+elif [ -t 0 ] || [ $- == *i* ]; then
+    printf "$prompt: " >/dev/stderr
+    # Disable echo
+    trap 'stty echo' EXIT
+    stty -echo
+    # Read password
+    read password
+    # Enable echo
+    stty echo
+    trap - EXIT
+    # Print the password
+    echo $password
+    exit 0
+fi
+
+exit 1

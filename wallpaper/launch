@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+# Try to set the wallpaper, otherwise use a fallback color
+wallpaper_dir="$XDG_CONFIG_HOME/wallpaper/image"
+wallpaper_file=$(ls "$wallpaper_dir" | head -n 1)
+wallpaper="$wallpaper_dir/$wallpaper_file"
+
+# hsetroot does not return non-zero on failure so set the fallback background
+# color first which will always succeed, then try to overwrite it with the
+# image.
+hsetroot -solid "#{{{ _color_wall_hex }}}"
+hsetroot -cover "$wallpaper"

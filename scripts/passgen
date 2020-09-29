@@ -1,0 +1,65 @@
+#!/usr/bin/env python3
+
+import argparse
+import os
+import string
+import sys
+
+# Character sets
+LOWERS    = string.ascii_lowercase
+UPPERS    = string.ascii_uppercase
+NUMBERS   = string.digits
+SYMBOLS   = "!@#$%^&*"
+AMBIGUOUS = "{}[]()/\\'\"`~,;:.<>"
+
+parser = argparse.ArgumentParser(
+    description="Generate a cryptographically strong password",
+    formatter_class=argparse.RawDescriptionHelpFormatter)
+parser.add_argument("size",
+    action="store", type=int, nargs="?", default=16,
+    help="number of characters")
+parser.add_argument("--lower",     "-l", action="store_true", help="use lowercase ({})".format(LOWERS))
+parser.add_argument("--upper",     "-u", action="store_true", help="use uppercase ({})".format(UPPERS))
+parser.add_argument("--number",    "-n", action="store_true", help="use numbers ({})".format(NUMBERS))
+parser.add_argument("--symbol",    "-s", action="store_true", help="use symbols ({})".format(SYMBOLS.replace('%', '%%')))
+parser.add_argument("--ambiguous", "-a", action="store_true", help="use ambiguous ({})".format(AMBIGUOUS))
+
+args = parser.parse_args()
+
+
+CHARS = ""
+if args.lower:
+    CHARS += LOWERS
+if args.upper:
+    CHARS += UPPERS
+if args.number:
+    CHARS += NUMBERS
+if args.symbol:
+    CHARS += SYMBOLS
+if args.ambiguous:
+    CHARS += AMBIGUOUS
+
+# Exit code on error
+EXIT_ERROR = 1
+
+if not CHARS:
+    print("No character sets were given")
+    sys.exit(EXIT_ERROR)
+
+# The number of bytes in a randomly generated integer.
+RANDOM_BYTES = 1024
+
+def random_int():
+    """
+    Generate a random integer with a size of `RANDOM_BYTES` in bytes.
+    """
+    bs = os.urandom(RANDOM_BYTES)
+    return int.from_bytes(bs, sys.byteorder, signed=False)
+
+def random_char():
+    """
+    Generate a random character.
+    """
+    return CHARS[random_int() % len(CHARS)]
+
+print("".join(random_char() for _ in range(args.size)))

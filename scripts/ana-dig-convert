@@ -1,0 +1,65 @@
+#!/usr/bin/env python3
+
+import argparse
+import sys
+
+parser = argparse.ArgumentParser(
+    description="Convert numbers between analog and digital representations")
+parser.add_argument(
+    "--bits", "-b", metavar="B", action="store", type=int, required=True,
+    help="number of representative bits")
+parser.add_argument(
+    "--lower", "-l", metavar="L", action="store", type=float, default=0.0,
+    help="lower limit on the analog value (default: %(default)s)")
+parser.add_argument(
+    "--upper", "-u", metavar="U", action="store", type=float, default=1.0,
+    help="upper limit on the analog value (default: %(default)s)")
+parser_group_number = parser.add_mutually_exclusive_group(required=True)
+parser_group_number.add_argument(
+    "--dig", "-d", metavar="D", action="store", type=lambda x: int(x, 0),
+    help="digital code")
+parser_group_number.add_argument(
+    "--ana", "-a", metavar="A", action="store", type=float,
+    help="analog value")
+parser_group_format = parser.add_mutually_exclusive_group()
+parser_group_format.add_argument("--bin", action="store_true",
+    help="format as binary")
+parser_group_format.add_argument("--dec", action="store_true",
+    help="format as decimal")
+parser_group_format.add_argument("--hex", action="store_true",
+    help="format as hexadecimal (default)")
+
+args = parser.parse_args()
+
+def fail(message):
+    print("error: {}".format(message), file=sys.stderr)
+    sys.exit(1)
+
+def format_code(code, base_name):
+    if base_name == "bin":
+        # Need 2 for the 0b
+        fmt = "#0{}b".format(2 + args.bits)
+        return format(code, fmt)
+    if base_name == "dec":
+        return str(code)
+    else: # hex
+        # Need 2 for the 0b, the +3 is for ceiling division
+        fmt = "#0{}x".format(2 + (args.bits + 3) // 4)
+        return format(code, fmt)
+
+if args.bits <= 0:
+    fail("bits must be a positive integer")
+
+MAX_CODE = 2 ** args.bits - 1
+BASE_NAME = "bin" if args.bin else "dec" if args.dec else "hex"
+
+if args.dig is not None:
+    if args.dig > MAX_CODE:
+        fail("code is larger than bits can hold")
+    print(args.lower + (args.dig / MAX_CODE) * (args.upper - args.lower))
+else:
+    if args.ana < args.lower or args.ana > args.upper:
+        fail("value out of range")
+    span = args.upper - args.lower
+    code = round((args.ana - args.lower) / span  * MAX_CODE)
+    print(format_code(code, BASE_NAME))
