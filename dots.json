@@ -136,8 +136,8 @@
           "executable": true,
           "template": true
         },
-        "bspwm/sxhkd/launch-bspwm": {
-          "dest": "$XDG_CONFIG_HOME/bspwm/launch-bspwm",
+        "bspwm/sxhkd/launch-sxhkd-bspwm": {
+          "dest": "$XDG_CONFIG_HOME/bspwm/launch-sxhkd-bspwm",
           "executable": true
         },
         "bspwm/sxhkd/sxhkdrc-bspwm": {

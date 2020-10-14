@@ -6,7 +6,7 @@
 startup=${1:-true}
 
 # Start the hotkey daemon
-sxhkd_launch="$XDG_CONFIG_HOME/sxhkd/launch-bspwm"
+sxhkd_launch="$XDG_CONFIG_HOME/bspwm/launch-sxhkd-bspwm"
 if $startup; then
     if [ -f "$sxhkd_launch" ]; then
         "$sxhkd_launch"
