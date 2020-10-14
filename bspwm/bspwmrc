@@ -6,15 +6,9 @@
 startup=${1:-true}
 
 # Start the hotkey daemon
-sxhkd_launch="$XDG_CONFIG_HOME/bspwm/launch-sxhkd-bspwm"
 if $startup; then
-    if [ -f "$sxhkd_launch" ]; then
-        "$sxhkd_launch"
-    else
-        echo "Error: Cannot start bspwm without sxhkd." \
-            "Expected a launch script in '$sxhkd_launch'"
-        exit 1
-    fi
+    pkill sxhkd
+    SXHKD_SHELL=$(which sh) sxhkd -c "$XDG_CONFIG_HOME/bspwm/sxhkdrc" &
 fi
 
 {{{ _wm_init_wm_independent }}}

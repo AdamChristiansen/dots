@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-
-pkill sxhkd
-config="$XDG_CONFIG_HOME/bspwm/sxhkdrc-bspwm"
-SXHKD_SHELL=$(which sh) sxhkd -c "$config" &

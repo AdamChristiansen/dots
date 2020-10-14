@@ -112,12 +112,8 @@
           "dest": "$XDG_CONFIG_HOME/berry/berry-window-snap",
           "executable": true
         },
-        "berry/sxhkd/launch-sxhkd-berry": {
-          "dest": "$XDG_CONFIG_HOME/berry/launch-sxhkd-berry",
-          "executable": true
-        },
-        "berry/sxhkd/sxhkdrc-berry": {
-          "dest": "$XDG_CONFIG_HOME/berry/sxhkdrc-berry",
+        "berry/sxhkdrc": {
+          "dest": "$XDG_CONFIG_HOME/berry/sxhkdrc",
           "template": true
         }
       },
@@ -136,12 +132,8 @@
           "executable": true,
           "template": true
         },
-        "bspwm/sxhkd/launch-sxhkd-bspwm": {
-          "dest": "$XDG_CONFIG_HOME/bspwm/launch-sxhkd-bspwm",
-          "executable": true
-        },
-        "bspwm/sxhkd/sxhkdrc-bspwm": {
-          "dest": "$XDG_CONFIG_HOME/bspwm/sxhkdrc-bspwm",
+        "bspwm/sxhkdrc": {
+          "dest": "$XDG_CONFIG_HOME/bspwm/sxhkdrc",
           "template": true
         }
       },
