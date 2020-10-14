@@ -92,7 +92,7 @@
           "template": true
         },
         "berry/berry-info": {
-          "dest": "$XDG_CONFIG_HOME/berry/autostart",
+          "dest": "$XDG_CONFIG_HOME/berry/berry-info",
           "executable": true,
           "template": true
         },
@@ -112,8 +112,8 @@
           "dest": "$XDG_CONFIG_HOME/berry/berry-window-snap",
           "executable": true
         },
-        "berry/sxhkd/launch-berry": {
-          "dest": "$XDG_CONFIG_HOME/berry/launch-berry",
+        "berry/sxhkd/launch-sxhkd-berry": {
+          "dest": "$XDG_CONFIG_HOME/berry/launch-sxhkd-berry",
           "executable": true
         },
         "berry/sxhkd/sxhkdrc-berry": {

@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
 
 pkill sxhkd
-config="$XDG_CONFIG_HOME/sxhkd/sxhkdrc-berry"
+config="$XDG_CONFIG_HOME/berry/sxhkdrc-berry"
 SXHKD_SHELL=$(which sh) sxhkd -c "$config" &

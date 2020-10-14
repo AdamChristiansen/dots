@@ -6,7 +6,7 @@
 startup=${1:-true}
 
 # Start the hotkey daemon
-sxhkd_launch="$XDG_CONFIG_HOME/sxhkd/launch-berry"
+sxhkd_launch="$XDG_CONFIG_HOME/berry/launch-sxhkd-berry"
 if $startup; then
     if [ -f "$sxhkd_launch" ]; then
         "$sxhkd_launch"
