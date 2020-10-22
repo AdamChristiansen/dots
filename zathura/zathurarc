@@ -73,4 +73,4 @@ set zoom-center            false
 set zoom-max               1000
 set zoom-min               10
 set zoom-step              10
-set selection-clipboard    primary
+set selection-clipboard    clipboard
