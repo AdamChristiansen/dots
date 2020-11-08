@@ -3,7 +3,11 @@
 # This indicates that the script is run in startup mode, where everything is
 # initialized. After startup mode it should be called with the parameter
 # "false" to prevent everything from being killed and reloaded
-startup=${1:-true}
+if [ "$1" = "false" ]; then
+    startup=false
+else
+    startup=true
+fi
 
 # Start the hotkey daemon
 if $startup; then
