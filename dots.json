@@ -379,7 +379,7 @@
     },
     "tmux": {
       "files": {
-        "tmux/tmux.conf": "$HOME/.tmux.conf"
+        "tmux/tmux.conf": "$XDG_CONFIG_HOME/tmux/tmux.conf"
       }
     },
     "tmuxinator": {
