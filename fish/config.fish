@@ -106,7 +106,8 @@ abbr -ga gp   git push
 abbr -ga gpl  git pull --rebase
 abbr -ga gr   git reset
 abbr -ga grh  git reset HEAD
-abbr -ga gs   git status --short -u
+abbr -ga gs   git status --short
+abbr -ga gsu  git status --short -u
 abbr -ga let  set -l
 abbr -ga mux  tmuxinator
 abbr -ga muxc tmuxinator start code -n
@@ -131,10 +132,11 @@ if type -q exa
 end
 if type -q xclip
     alias yy 'xclip -selection clipboard'
+    alias yc 'printf "" | yy'
 else if type -q pbcopy
     alias yy 'pbcopy'
+    alias yc 'printf "" | yy'
 end
-alias yc 'printf "" | yy'
 
 # Start the vi bindings
 fish_vi_key_bindings insert
